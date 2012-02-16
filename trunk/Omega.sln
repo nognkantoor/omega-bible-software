@@ -1,18 +1,21 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual C# Express 2010
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Omega", "Omega.App/Omega.csproj", "{91BE5151-9368-4EA7-B61A-0B4584F7D3FE}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Omega.App", "Omega.App\Omega.App.csproj", "{91BE5151-9368-4EA7-B61A-0B4584F7D3FE}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x86 = Debug|x86
 		Release|x86 = Release|x86
+		Test|x86 = Test|x86
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{91BE5151-9368-4EA7-B61A-0B4584F7D3FE}.Debug|x86.ActiveCfg = Debug|x86
 		{91BE5151-9368-4EA7-B61A-0B4584F7D3FE}.Debug|x86.Build.0 = Debug|x86
 		{91BE5151-9368-4EA7-B61A-0B4584F7D3FE}.Release|x86.ActiveCfg = Release|x86
 		{91BE5151-9368-4EA7-B61A-0B4584F7D3FE}.Release|x86.Build.0 = Release|x86
+		{91BE5151-9368-4EA7-B61A-0B4584F7D3FE}.Test|x86.ActiveCfg = Test|x86
+		{91BE5151-9368-4EA7-B61A-0B4584F7D3FE}.Test|x86.Build.0 = Test|x86
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
