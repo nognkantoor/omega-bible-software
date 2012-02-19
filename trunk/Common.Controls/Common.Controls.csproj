@@ -58,7 +58,6 @@
     <Compile Include="Forms\LocalizableLabel.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Forms\TranslationSetter.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
