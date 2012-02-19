@@ -5,11 +5,11 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>8.0.30703</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{6A5A1AD0-C939-4878-A9AB-C34D697A8B32}</ProjectGuid>
-    <OutputType>Library</OutputType>
+    <ProjectGuid>{5A6C14AA-DF22-43A5-8368-8E006CFE0709}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Common.Controls</RootNamespace>
-    <AssemblyName>Common.Controls</AssemblyName>
+    <RootNamespace>Common.Core.Test</RootNamespace>
+    <AssemblyName>Common.Core.Test</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -30,20 +30,23 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'TestConfig|AnyCPU'">
-    <DebugSymbols>true</DebugSymbols>
-    <OutputPath>bin\TestConfig\</OutputPath>
-    <DefineConstants>DEBUG;TRACE</DefineConstants>
-    <DebugType>full</DebugType>
-    <PlatformTarget>AnyCPU</PlatformTarget>
-    <ErrorReport>prompt</ErrorReport>
-    <CodeAnalysisIgnoreBuiltInRuleSets>true</CodeAnalysisIgnoreBuiltInRuleSets>
-    <CodeAnalysisIgnoreBuiltInRules>true</CodeAnalysisIgnoreBuiltInRules>
+  <PropertyGroup>
+    <StartupObject />
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="nunit-gui-runner">
+      <HintPath>..\Lib\NUnit\bin\lib\nunit-gui-runner.dll</HintPath>
+    </Reference>
+    <Reference Include="nunit.framework, Version=2.6.0.12035, Culture=neutral, PublicKeyToken=96d09a1eb7f44a77, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Lib\NUnit\bin\framework\nunit.framework.dll</HintPath>
+    </Reference>
+    <Reference Include="nunit.mocks, Version=2.6.0.12035, Culture=neutral, PublicKeyToken=96d09a1eb7f44a77, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Lib\NUnit\bin\framework\nunit.mocks.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
-    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -51,26 +54,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Class1.cs" />
-    <Compile Include="Forms\LocalizableForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Forms\LocalizableLabel.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="Forms\TranslationSetter.cs" />
+    <Compile Include="Common.Core.MVVM\BindingTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Test.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Silverlight\" />
-    <Folder Include="WPF\" />
-    <Folder Include="XamlCommon\" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\Common.Interfaces\Common.Interfaces.csproj">
-      <Project>{56190CAF-EEA2-48B8-A16A-8B03A59B502B}</Project>
-      <Name>Common.Interfaces</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Common\Common.Core.csproj">
       <Project>{71318A53-328C-488C-95FD-12442F5F6CAD}</Project>
       <Name>Common.Core</Name>

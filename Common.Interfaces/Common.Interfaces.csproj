@@ -40,7 +40,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Class1.cs" />
+    <Compile Include="Controls\Forms\ILocalizableControl.cs" />
+    <Compile Include="Core\Collections\INotifyDictionary.cs" />
+    <Compile Include="Core\Pattern\IContext.cs" />
+    <Compile Include="Core\Pattern\IFactory.cs" />
+    <Compile Include="Core\Translation\ITranslator.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

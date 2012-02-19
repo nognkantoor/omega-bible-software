@@ -1,6 +1,6 @@
-﻿namespace Tools
+﻿namespace Omega.Tools.BibleParser
 {
-    partial class Form1
+    partial class BiblePageParser
     {
         /// <summary>
         /// Required designer variable.
@@ -30,13 +30,14 @@
         {
             this.SuspendLayout();
             // 
-            // Form1
+            // BiblePageParser
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(292, 266);
-            this.Name = "Form1";
+            this.Name = "BiblePageParser";
             this.Text = "Omega tools";
+            this.TextTranslation = "Omega tools";
             this.ResumeLayout(false);
 
         }
