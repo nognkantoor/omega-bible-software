@@ -11,16 +11,16 @@ using Common.Core.Pattern;
 
 namespace Omega.Tools.BibleParser
 {
-    public partial class BiblePageParser : Common.Controls.Forms.LocalizableForm
+    public partial class BiblePageParser : Common.Controls.Forms.ExtendedForm
     {
         public BiblePageParser()
         {
             InitializeComponent();
         }
 
-        protected override Common.Interfaces.Core.Translation.ITranslator GetTranslator()
-        {
-            return Singleton<Context>.Instance.Localization;
-        }
+        //protected override Common.Interfaces.Core.Translation.ITranslator GetTranslator()
+        //{
+        //    return Singleton<Context>.Instance.Localization;
+        //}
     }
 }
