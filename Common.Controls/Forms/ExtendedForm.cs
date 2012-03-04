@@ -10,10 +10,33 @@ using Common.Interfaces.Controls.Forms;
 
 namespace Common.Controls.Forms
 {
-    public class LocalizableForm : System.Windows.Forms.Form, ILocalizableControl
+    public class ExtendedForm : System.Windows.Forms.Form, ILocalizableControl
     {
         private string _textTranslation;
         private ITranslator _translator;
+
+        public ExtendedForm()
+        {
+            
+        }
+
+        protected override void WndProc(ref Message message)
+        {
+            if (ExternalMessageComming != null)
+            {
+                WndProcMessageEventArgs args = new WndProcMessageEventArgs(message);
+                ExternalMessageComming(this, args);
+
+                if (!args.Handled)
+                {
+                    base.WndProc(ref message);
+                }
+            }
+            else
+            {
+                base.WndProc(ref message);
+            }
+        }
 
         /// <summary>
         /// Gets or sets the key index for translating into the Text value.
@@ -51,6 +74,8 @@ namespace Common.Controls.Forms
                 Text = GetTranslation(TextTranslation);
             }
         }
+
+        public event EventHandler<WndProcMessageEventArgs> ExternalMessageComming;
 
         protected virtual string GetTranslation(string key)
         {

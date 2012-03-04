@@ -21,6 +21,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Omega.Main", "Omega.Main\Om
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Common.Core.Test", "Common.Core.Test\Common.Core.Test.csproj", "{5A6C14AA-DF22-43A5-8368-8E006CFE0709}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Omega.TestApplication", "Omega.TestApplication\Omega.TestApplication.csproj", "{95053D31-6577-4699-A521-C2FE925E86F8}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -237,6 +239,26 @@ Global
 		{5A6C14AA-DF22-43A5-8368-8E006CFE0709}.TestConfig|Mixed Platforms.ActiveCfg = Release|Any CPU
 		{5A6C14AA-DF22-43A5-8368-8E006CFE0709}.TestConfig|Mixed Platforms.Build.0 = Release|Any CPU
 		{5A6C14AA-DF22-43A5-8368-8E006CFE0709}.TestConfig|x86.ActiveCfg = Release|Any CPU
+		{95053D31-6577-4699-A521-C2FE925E86F8}.Debug|Any CPU.ActiveCfg = Debug|x86
+		{95053D31-6577-4699-A521-C2FE925E86F8}.Debug|Mixed Platforms.ActiveCfg = Debug|x86
+		{95053D31-6577-4699-A521-C2FE925E86F8}.Debug|Mixed Platforms.Build.0 = Debug|x86
+		{95053D31-6577-4699-A521-C2FE925E86F8}.Debug|x86.ActiveCfg = Debug|x86
+		{95053D31-6577-4699-A521-C2FE925E86F8}.Debug|x86.Build.0 = Debug|x86
+		{95053D31-6577-4699-A521-C2FE925E86F8}.Release|Any CPU.ActiveCfg = Release|x86
+		{95053D31-6577-4699-A521-C2FE925E86F8}.Release|Mixed Platforms.ActiveCfg = Release|x86
+		{95053D31-6577-4699-A521-C2FE925E86F8}.Release|Mixed Platforms.Build.0 = Release|x86
+		{95053D31-6577-4699-A521-C2FE925E86F8}.Release|x86.ActiveCfg = Release|x86
+		{95053D31-6577-4699-A521-C2FE925E86F8}.Release|x86.Build.0 = Release|x86
+		{95053D31-6577-4699-A521-C2FE925E86F8}.Test|Any CPU.ActiveCfg = Release|x86
+		{95053D31-6577-4699-A521-C2FE925E86F8}.Test|Mixed Platforms.ActiveCfg = Release|x86
+		{95053D31-6577-4699-A521-C2FE925E86F8}.Test|Mixed Platforms.Build.0 = Release|x86
+		{95053D31-6577-4699-A521-C2FE925E86F8}.Test|x86.ActiveCfg = Release|x86
+		{95053D31-6577-4699-A521-C2FE925E86F8}.Test|x86.Build.0 = Release|x86
+		{95053D31-6577-4699-A521-C2FE925E86F8}.TestConfig|Any CPU.ActiveCfg = Release|x86
+		{95053D31-6577-4699-A521-C2FE925E86F8}.TestConfig|Mixed Platforms.ActiveCfg = Release|x86
+		{95053D31-6577-4699-A521-C2FE925E86F8}.TestConfig|Mixed Platforms.Build.0 = Release|x86
+		{95053D31-6577-4699-A521-C2FE925E86F8}.TestConfig|x86.ActiveCfg = Release|x86
+		{95053D31-6577-4699-A521-C2FE925E86F8}.TestConfig|x86.Build.0 = Release|x86
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -6,7 +6,7 @@ using Common.Interfaces.Core.Translation;
 
 namespace Common.Controls.Forms
 {
-    public class LocalizableLabel : System.Windows.Forms.Label
+    public class ExtendedLabel : System.Windows.Forms.Label
     {
         private string _textTranslation;
         private ITranslator _translator;
