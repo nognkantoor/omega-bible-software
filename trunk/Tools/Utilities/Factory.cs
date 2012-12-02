@@ -6,10 +6,11 @@ using core=Common.Core;
 using interfaces=Common.Interfaces;
 using System.Reflection;
 using Common.Interfaces.Core.Pattern;
+using Common.Core.Error;
 
 namespace Omega.Tools.Utilities
 {
-    class Factory : IFactory
+    public class Factory : Common.Core.Pattern.Factory, IFactory
     {
         private Factory()
         {

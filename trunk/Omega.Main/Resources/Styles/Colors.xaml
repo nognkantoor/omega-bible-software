@@ -1,0 +1,11 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <SolidColorBrush x:Key="TestColor" Color="Blue" />
+
+    <SolidColorBrush x:Key="SuperscriptLinkColor" Color="Green" />
+    <SolidColorBrush x:Key="SuperscriptLinkColorOver" Color="Black" />
+    <SolidColorBrush x:Key="SuperscriptLinkColorPressed" Color="DarkGray" />
+    
+</ResourceDictionary>
+    

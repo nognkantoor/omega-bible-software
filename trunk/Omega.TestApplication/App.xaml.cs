@@ -1,9 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Configuration;
-using System.Data;
-using System.Linq;
-using System.Windows;
+﻿using System.Windows;
+using Common.Controls.WPF;
 
 namespace Omega.TestApplication
 {
@@ -12,5 +8,19 @@ namespace Omega.TestApplication
     /// </summary>
     public partial class App : Application
     {
+        public App()
+        {
+        }
+
+        protected override void OnStartup(StartupEventArgs e)
+        {
+            base.OnStartup(e);
+            this.SetStyleDictionaries("/Resources/Styles/", "AlternativeColors.xaml");
+
+            Window win = this.MainWindow;
+            this.MainWindow = new MainWindow();
+            this.MainWindow.Show();
+            if (win != null) win.Close();
+        }
     }
 }

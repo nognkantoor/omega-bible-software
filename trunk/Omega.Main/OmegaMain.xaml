@@ -1,0 +1,8 @@
+﻿<Window x:Class="Omega.Main.OmegaMain"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="{Binding WindowTitle}" Height="350" Width="525">
+    <Grid>
+        <Border Background="{StaticResource TestColor}" Width="100" Height="200" />
+    </Grid>
+</Window>

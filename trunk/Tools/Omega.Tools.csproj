@@ -11,7 +11,8 @@
     <RootNamespace>Omega.Tools</RootNamespace>
     <AssemblyName>Omega.Tools</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
-    <TargetFrameworkProfile>Client</TargetFrameworkProfile>
+    <TargetFrameworkProfile>
+    </TargetFrameworkProfile>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
@@ -20,7 +21,7 @@
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
     <OutputPath>bin\Debug\</OutputPath>
-    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DefineConstants>TRACE;DEBUG</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
@@ -54,12 +55,33 @@
     <Compile Include="BibleParser\BiblePageParser.Designer.cs">
       <DependentUpon>BiblePageParser.cs</DependentUpon>
     </Compile>
+    <Compile Include="BibleParser\HtmlAttribute.cs" />
+    <Compile Include="BibleParser\HtmTag.cs" />
+    <Compile Include="BibleParser\VerseInformation.cs" />
+    <Compile Include="BibleParser\XmlAttributePanel.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="BibleParser\XmlAttributePanel.Designer.cs">
+      <DependentUpon>XmlAttributePanel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="BibleParser\XmlAttributeRow.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="BibleParser\XmlAttributeRow.Designer.cs">
+      <DependentUpon>XmlAttributeRow.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Utilities\Context.cs" />
     <Compile Include="Utilities\Factory.cs" />
     <EmbeddedResource Include="BibleParser\BiblePageParser.resx">
       <DependentUpon>BiblePageParser.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="BibleParser\XmlAttributePanel.resx">
+      <DependentUpon>XmlAttributePanel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="BibleParser\XmlAttributeRow.resx">
+      <DependentUpon>XmlAttributeRow.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -71,6 +93,7 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <None Include="app.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

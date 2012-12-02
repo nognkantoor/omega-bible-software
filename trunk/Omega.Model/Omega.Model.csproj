@@ -12,6 +12,8 @@
     <AssemblyName>Omega.Model</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile>
+    </TargetFrameworkProfile>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -40,8 +42,34 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Class1.cs" />
+    <Compile Include="Bibles\Structure\Book.cs" />
+    <Compile Include="Bibles\IBibleDescriptor.cs" />
+    <Compile Include="Bibles\Implementation\DatabaseBibleDescriptor.cs" />
+    <Compile Include="Bibles\Implementation\FileBibleDescriptor.cs" />
+    <Compile Include="Bibles\Structure\Chapter.cs" />
+    <Compile Include="Bibles\Structure\NewTestament.cs" />
+    <Compile Include="Bibles\Structure\OldTestament.cs" />
+    <Compile Include="BibleText\IBibleFactory.cs" />
+    <Compile Include="BibleText\Implementation\BaseVerseProvider.cs" />
+    <Compile Include="BibleText\Implementation\BibleFactory.cs" />
+    <Compile Include="BibleText\Implementation\DatabaseVerseProvider.cs" />
+    <Compile Include="BibleText\Implementation\Lex.cs" />
+    <Compile Include="BibleText\Implementation\Lexicons.cs" />
+    <Compile Include="BibleText\Implementation\Verse.cs" />
+    <Compile Include="BibleText\Implementation\FileVerseProvider.cs" />
+    <Compile Include="BibleText\Implementation\Word.cs" />
+    <Compile Include="BibleText\ILex.cs" />
+    <Compile Include="BibleText\ILexicons.cs" />
+    <Compile Include="BibleText\IVerse.cs" />
+    <Compile Include="BibleText\IVerseProvider.cs" />
+    <Compile Include="BibleText\IWord.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Common\Common.Core.csproj">
+      <Project>{71318A53-328C-488C-95FD-12442F5F6CAD}</Project>
+      <Name>Common.Core</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

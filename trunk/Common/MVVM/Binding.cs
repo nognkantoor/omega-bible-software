@@ -7,41 +7,117 @@ using System.Reflection;
 
 namespace Common.Core.MVVM
 {
+    /// <summary>
+    /// Binding class is able of retrieving values by giving a property path
+    /// and giving the root object. 
+    /// <example>
+    /// var thirdObject = new {PropertyC = "Target value"};
+    /// var secondObject = new {PropertyB = thirdObject };
+    /// var rootObject = new {PropertyA = secondObject };
+    /// Binding binding = new Binding("PropertyA.PropertyB.PropertyC", rootObject);
+    /// string value = (string)binding.Value; // value == "Target value"
+    /// </example>
+    /// </summary>
     public class Binding
     {
+        #region Private fields
+
+        /// <summary>
+        /// Holds the path for the binding.
+        /// </summary>
         private string _path = ".";
+
+        /// <summary>
+        /// Holds the root object for the path binding.
+        /// </summary>
         private object _dataContext;
+
+        /// <summary>
+        /// Holds the object being at the top of the property path.
+        /// This is the last object from the path. 
+        /// Using this speeds up evaluating values when only 
+        /// a PropertyChanged event occured on the last object.
+        /// </summary>
         private object _topPart;
+
+        /// <summary>
+        /// Holds the subsequent object to the _topPart.
+        /// </summary>
         private object _topPartOwner;
+
+        /// <summary>
+        /// Holds the PropertyInfo for the top object.
+        /// </summary>
         private PropertyInfo _topPartProperty;
+
+        /// <summary>
+        /// Holds all the parts of the binding path.
+        /// </summary>
         private List<KeyValuePair<string, object>> _parts = new List<KeyValuePair<string, object>>();
 
+        #endregion Private fields
+
+        #region Constructors
+
+        /// <summary>
+        /// Initializes a new instance of the Binding class.
+        /// </summary>
         public Binding()
         {
- 
+
         }
 
+        /// <summary>
+        /// Initializes a new instance of the Binding class with
+        /// binding path.
+        /// </summary>
+        /// <param name="path">Path to the value that the binding should evaluate.</param>
         public Binding(string path)
-            : this(path,null)
+            : this(path, null)
         {
         }
 
+        /// <summary>
+        /// Initializes a new instance of the Binding class
+        /// with binding path and root object being the data context
+        /// for the binding.
+        /// </summary>
+        /// <param name="path">Path to the value that the binding should evaluate.</param>
+        /// <param name="dataContext">Data context object beinig the root of the binding.</param>
         public Binding(string path, object dataContext)
         {
             Path = path;
             DataContext = dataContext;
         }
+        
+        #endregion Constructors
 
+        #region Evaluation methods
+
+        /// <summary>
+        /// Evaluates the binding from scratch.
+        /// </summary>
         protected void EvaluateBinding()
         {
             EvaluateBinding(DataContext, Path);
         }
 
+        /// <summary>
+        /// Evaluates the binding from the given place.
+        /// </summary>
+        /// <param name="dataContext">Object to start the evaluation from.</param>
+        /// <param name="path">Path left to evaluate from the given dataContext object.</param>
         protected void EvaluateBinding(object dataContext, string path)
         {
             EvaluateBinding(dataContext, path, string.Empty);
         }
 
+        /// <summary>
+        /// Evaluates the binding from the given place.
+        /// </summary>
+        /// <param name="dataContext">Object to start the evaluation from.</param>
+        /// <param name="path">Path left to evaluate from the given dataContext object.</param>
+        /// <param name="beginingPath">Path already evaluated.</param>
         protected void EvaluateBinding(object dataContext, string path, string beginingPath)
         {
             if (string.IsNullOrEmpty(path))
@@ -49,10 +125,10 @@ namespace Common.Core.MVVM
                 path = ".";
             }
 
-            if(dataContext == null) return;
-            
+            if (dataContext == null) return;
 
-            string[] parts = path.Split(new string [] { "." }, 
+
+            string[] parts = path.Split(new string[] { "." },
                 StringSplitOptions.RemoveEmptyEntries);
             AddPartNotify(dataContext);
             if (string.IsNullOrEmpty(beginingPath))
@@ -62,7 +138,7 @@ namespace Common.Core.MVVM
             }
             else
             {
-                _parts.Add(new KeyValuePair<string,object>(beginingPath, dataContext));
+                _parts.Add(new KeyValuePair<string, object>(beginingPath, dataContext));
             }
 
             object lastPart = dataContext;
@@ -73,7 +149,7 @@ namespace Common.Core.MVVM
 
             for (int i = 0; i < parts.Length; i++)
             {
-                if(string.IsNullOrEmpty(partKey))
+                if (string.IsNullOrEmpty(partKey))
                 {
                     partKey = parts[i];
                 }
@@ -85,7 +161,7 @@ namespace Common.Core.MVVM
                 if (EvaluatePart(lastPart, parts[i], out nextPart, out lastProperty))
                 {
                     lastOwner = lastPart;
-                    _parts.Add(new KeyValuePair<string,object>(partKey, nextPart));
+                    _parts.Add(new KeyValuePair<string, object>(partKey, nextPart));
                     lastPart = nextPart;
                     nextPart = null;
                 }
@@ -101,6 +177,10 @@ namespace Common.Core.MVVM
             _topPartProperty = lastProperty;
         }
 
+        /// <summary>
+        /// Removes listening for INotifyPropertyChanged.PropertyChanged event
+        /// from all binding path elements.
+        /// </summary>
         private void ResetNotifyPropertyChanged()
         {
             if (_parts.Count > 0)
@@ -112,6 +192,11 @@ namespace Common.Core.MVVM
             }
         }
 
+        /// <summary>
+        /// Adds listening for INotifyPropertyChanged.PropertyChanged event
+        /// to the given part.
+        /// </summary>
+        /// <param name="value">Part object.</param>
         protected void AddPartNotify(object value)
         {
             if (value != null && value is INotifyPropertyChanged)
@@ -120,6 +205,11 @@ namespace Common.Core.MVVM
             }
         }
 
+        /// <summary>
+        /// Removes listening for INotifyPropertyChanged.PropertyChanged event
+        /// from the given binding path element.
+        /// </summary>
+        /// <param name="value">Part object.</param>
         protected void RemovePartNotify(object value)
         {
             if (value != null && value is INotifyPropertyChanged)
@@ -128,6 +218,15 @@ namespace Common.Core.MVVM
             }
         }
 
+        /// <summary>
+        /// Evaluates one part of the binding path by trying to
+        /// get the next property value in the binding path.
+        /// </summary>
+        /// <param name="value">Current object in the path.</param>
+        /// <param name="path">Next property in the path.</param>
+        /// <param name="nextValue">Retrieved next value.</param>
+        /// <param name="property">PropertyInfo of the path property if exists.</param>
+        /// <returns>True if evaluation is successfull</returns>
         protected bool EvaluatePart(object value, string path, out object nextValue, out PropertyInfo property)
         {
             property = null;
@@ -146,7 +245,13 @@ namespace Common.Core.MVVM
             return false;
         }
 
-        void BindingPropertyChanged(object sender, PropertyChangedEventArgs e)
+        /// <summary>
+        /// Handles the INotifyPropertyChanged.PropertyChanged event for a part
+        /// of the binding.
+        /// </summary>
+        /// <param name="sender">Object which property changed.</param>
+        /// <param name="e">PropertyChangedEventArgs for the property changed.</param>
+        private void BindingPropertyChanged(object sender, PropertyChangedEventArgs e)
         {
             KeyValuePair<string, object> partFrom = _parts.FirstOrDefault(p => p.Value == sender);
             if (partFrom.Key != null && partFrom.Value != null)
@@ -158,12 +263,12 @@ namespace Common.Core.MVVM
                     return;
                 }
 
-                string partsToRight = Path.Substring(partFrom.Key.Length+1);
+                string partsToRight = Path.Substring(partFrom.Key.Length + 1);
                 int index = _parts.IndexOf(partFrom);
 
                 if (_parts.Count > 0)
                 {
-                    for(int i=index;i < _parts.Count;i++)
+                    for (int i = index; i < _parts.Count; i++)
                     {
                         RemovePartNotify(_parts[i].Value);
                     }
@@ -174,13 +279,21 @@ namespace Common.Core.MVVM
             }
         }
 
+
+        #endregion Evaluation methods
+
+        #region Public properties
+
+        /// <summary>
+        /// Gets or tries to set the value evaluated by the binding.
+        /// </summary>
         public object Value
         {
             get { return _topPart; }
-            set 
+            set
             {
-                if (!string.IsNullOrEmpty(Path) && 
-                    _topPartOwner != null && 
+                if (!string.IsNullOrEmpty(Path) &&
+                    _topPartOwner != null &&
                     _topPartProperty != null &&
                     _topPartProperty.CanWrite)
                 {
@@ -189,6 +302,10 @@ namespace Common.Core.MVVM
             }
         }
 
+        /// <summary>
+        /// Gets or sets the data context object
+        /// being the root of the binding.
+        /// </summary>
         public object DataContext
         {
             get { return _dataContext; }
@@ -199,6 +316,10 @@ namespace Common.Core.MVVM
             }
         }
 
+        /// <summary>
+        /// Gets or sets a dot separated path to the
+        /// target value of the binding.
+        /// </summary>
         public string Path
         {
             get { return _path; }
@@ -209,5 +330,6 @@ namespace Common.Core.MVVM
             }
         }
 
+        #endregion Public properties
     }
 }

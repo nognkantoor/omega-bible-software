@@ -16,7 +16,8 @@ namespace Common.Core.Collections
     /// <typeparam name="TResult">Parameter type being the result value of the dictionary</typeparam>
     public class FunctionDictionary<TKey,TResult> : 
         ViewModelBase, 
-        Common.Interfaces.Core.Collections.INotifyDictionary<TKey,TResult>
+        Common.Interfaces.Core.Collections.INotifyDictionary<TKey,TResult>,
+        IDictionary<TKey,TResult>
     {
         #region Private fields
 
@@ -45,22 +46,51 @@ namespace Common.Core.Collections
 
         #region Constructors
 
+        /// <summary>
+        /// Initializes a new instance of the FunctionDictionary class with a getter function.
+        /// This kind of FunctionDictionary will be able only to get values.
+        /// </summary>
+        /// <param name="getterFunction">Function for getting a value by key.</param>
         public FunctionDictionary(Func<TKey, TResult> getterFunction)
             : this(getterFunction, null, null)
         { }
 
+        /// <summary>
+        /// Initializes a new instance of the FunctionDictionary class with a getter function
+        /// and a default value getter.
+        /// This kind of FunctionDictionary will be able only to get values.
+        /// This dictionary will return value from the defaultValueGetter function when the normal 
+        /// getter will return null.
+        /// </summary>
+        /// <param name="getterFunction">Function for getting a value by key.</param>
+        /// <param name="defaultValueGetter">Function for getting a default TResult value.</param>
         public FunctionDictionary(Func<TKey, TResult> getterFunction,
             Func<TKey, TResult> defaultValueGetter)
             : this(getterFunction, defaultValueGetter, null)
         {
         }
 
+        /// <summary>
+        /// Initializes a new instance of the FunctionDictionary class with a getter function
+        /// and setter action.
+        /// </summary>
+        /// <param name="getterFunction">Function for getting a value by key.</param>
+        /// <param name="setterAction">Action setting a value for the given key.</param>
         public FunctionDictionary(Func<TKey, TResult> getterFunction,
             Action<TKey, TResult> setterAction)
             : this(getterFunction, null, setterAction)
         {
         }
 
+        /// <summary>
+        /// Initializes a new instance of the FunctionDictionary class with a getter function
+        /// default value getter function, and setter action.
+        /// This dictionary will return value from the defaultValueGetter function when the normal 
+        /// getter will return null.
+        /// </summary>
+        /// <param name="getterFunction">Function for getting a value by key.</param>
+        /// <param name="setterAction">Action setting a value for the given key.</param>
+        /// <param name="defaultValueGetter">Function for getting a default TResult value.</param>
         public FunctionDictionary(Func<TKey, TResult> getterFunction,
             Func<TKey, TResult> defaultValueGetter,
             Action<TKey, TResult> setterAction)
