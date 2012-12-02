@@ -25,6 +25,38 @@ namespace Common.Core.Translation
     /// </summary>
     public class Translator : Common.Core.MVVM.ViewModelBase, IValueConverter, ITranslator
     {
+        #region Default Translator
+
+        /// <summary>
+        /// Holds the default translator instance.
+        /// </summary>
+        private static ITranslator _defaultTranslator;
+
+        /// <summary>
+        /// Gets or sets a default translator object which can be used for default 
+        /// initialization of objects that use the ITranslator instance to 
+        /// translate their content (like controls etc.)
+        /// </summary>
+        public static ITranslator Default
+        {
+            get
+            {
+                if (_defaultTranslator == null)
+                {
+                    _defaultTranslator = new Translator();
+                }
+
+                return _defaultTranslator;
+            }
+
+            set
+            {
+                _defaultTranslator = value;
+            }
+        }
+
+        #endregion Default Translator
+        
         #region Missing keys helper
 		
         // This mechanism is a helper for gathering the keys that haven't any translation.
@@ -135,6 +167,7 @@ namespace Common.Core.Translation
         {
             _customTranslationFunction = customTranslationEngine;
             _customData = null;
+            NotifyLanguageChanged();
         }
 
         /// <summary>
@@ -146,6 +179,7 @@ namespace Common.Core.Translation
         {
             _customTranslationFunction = null;
             _customData = data;
+            NotifyLanguageChanged();
         }
 
         #endregion Public initialization methods

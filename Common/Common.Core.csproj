@@ -12,6 +12,8 @@
     <AssemblyName>Common.Core</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile>
+    </TargetFrameworkProfile>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -31,9 +33,13 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="log4net">
+      <HintPath>..\Lib\Log4Net\log4net.dll</HintPath>
+    </Reference>
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
     <Reference Include="System" />
+    <Reference Include="System.configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml.Linq" />
@@ -44,18 +50,27 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Application\Program.cs" />
+    <Compile Include="Application\StartupManager.cs" />
+    <Compile Include="Collections\CollectionExtensions.cs" />
     <Compile Include="Collections\FunctionDictionary.cs" />
+    <Compile Include="Format\StringExtensions.cs" />
     <Compile Include="MVVM\Binding.cs" />
     <Compile Include="Pattern\Factory.cs" />
     <Compile Include="MVVM\RelayCommand.cs" />
     <Compile Include="MVVM\ViewModelBase.cs" />
-    <Compile Include="Pattern\ReflectionHelper.cs" />
+    <Compile Include="Application\ReflectionHelper.cs" />
+    <Compile Include="Pattern\RegisterInFactoryAttribute.cs" />
     <Compile Include="Pattern\Singleton.cs" />
-    <Compile Include="Pattern\StartupAttribute.cs" />
+    <Compile Include="Application\OnStartupAttribute.cs" />
+    <Compile Include="Pattern\Symbol.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Error\Exceptions.cs" />
+    <Compile Include="Error\WrapperException.cs" />
     <Compile Include="Translation\StringExtensions.cs" />
     <Compile Include="Translation\TranslationAttribute.cs" />
     <Compile Include="Translation\Translator.cs" />
+    <Compile Include="XML\Query.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Common.Interfaces\Common.Interfaces.csproj">

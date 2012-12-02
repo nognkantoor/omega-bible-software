@@ -35,6 +35,12 @@ namespace Common.Core.MVVM
             }
         }
 
+        /// <summary>
+        /// Method for checking if the given property is a member of the given type.
+        /// </summary>
+        /// <param name="property">Property name</param>
+        /// <param name="type">Type which supossed to be the owner of the property.</param>
+        /// <returns>True if this property is a member of the given type, false otherwise</returns>
         public static bool PropertyExists(string property, Type type)
         {
 #if DEBUG
@@ -71,20 +77,11 @@ namespace Common.Core.MVVM
         protected void OnPropertyChanged(string property)
         {
             ViewModelBase.InvokePropertyChanged(this, PropertyChanged, property);
-
-            //if (ViewModelBase.PropertyExists(property, this.GetType()))
-            //{
-            //    if (PropertyChanged != null)
-            //    {
-            //        PropertyChanged(this, new PropertyChangedEventArgs(property));
-            //    }
-            //}
-            //else
-            //{
-            //    throw new ArgumentException("Property " + property + " does not exist on object of type " + this.GetType().Name);
-            //}
         }
 
+        /// <summary>
+        /// PropertyChanged event invokes when a property of this instance changes.
+        /// </summary>
         public event PropertyChangedEventHandler PropertyChanged;
 
         #endregion

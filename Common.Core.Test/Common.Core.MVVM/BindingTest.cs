@@ -39,7 +39,7 @@ namespace Common.Core.Test
         }
     }
 
-    public class ClassA : Common.Core.MVVM.ViewModelBase
+    public class ClassA : ViewModelBase
     {
         private ClassB _propertyA;
         public ClassA()
@@ -58,7 +58,7 @@ namespace Common.Core.Test
         }
     }
 
-    public class ClassB : Common.Core.MVVM.ViewModelBase
+    public class ClassB : ViewModelBase
     {
         private ClassC _propertyB;
 
@@ -78,7 +78,7 @@ namespace Common.Core.Test
         }
     }
 
-    public class ClassC : Common.Core.MVVM.ViewModelBase
+    public class ClassC :ViewModelBase
     {
         private string _propertyC;
 
